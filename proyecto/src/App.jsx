@@ -15,16 +15,22 @@ function App() {
   const [carrito, setCarrito] = useState([]);
 
   function agregarCarrito(producto, cantidad) {
-    
+
+    if(producto) {
         //si el carrito esta vacio agrego el producto directo
         if(carrito.length === 0) {
-
             setCarrito(carrito.push({producto: producto, cantidad: cantidad}))
+            console.log("agrego el producto:" +JSON.stringify(producto))
+            console.log("al carrito" +JSON.stringify(carrito))
         }
         else {  //si el carrito tiene algo compruebo que exista el producto
 
             //
+            //
             //ACA YA ME CONVIERTE EL CARRITO EN UN ENTERO
+            //ME DEVUELVE 1 EN VEZ DE DEVOLVERME EL CARRITO
+            console.log("carrito del else " +carrito)
+            //
             //
 
             const productoExiste = carrito.find(item => item.producto.id === producto.id)
@@ -45,6 +51,7 @@ function App() {
                 setCarrito(carrito.push({producto: producto, cantidad: cantidad}))
             }
         }    
+      }
   }
 
 
