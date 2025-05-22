@@ -15,9 +15,11 @@ function App() {
   const [carrito, setCarrito] = useState([]);
 
   function agregarCarrito(producto, cantidad) {
+    
         //si el carrito esta vacio agrego el producto directo
         if(carrito.length === 0) {
-            setCarrito(carrito.push(producto))
+
+            setCarrito(carrito.push({producto: producto, cantidad: cantidad}))
         }
         else {  //si el carrito tiene algo compruebo que exista el producto
 
@@ -30,7 +32,9 @@ function App() {
             if(productoExiste) {
               const carritoActualizado = carrito.map(item => {
                 if(item.producto.id === producto.id) {
-                  item.cantidad = item.cantidad + cantidad;
+                  //const actualizarCantidad = item.cantidad + cantidad;
+                  const nuevoProd = {producto: item.producto, cantidad: item.cantidad + cantidad}
+                  return nuevoProd
                 }
                 return item
               })
@@ -38,7 +42,7 @@ function App() {
             }
             else {
                 //lo agrego porque no esta
-                setCarrito(carrito.push(producto))
+                setCarrito(carrito.push({producto: producto, cantidad: cantidad}))
             }
         }    
   }
