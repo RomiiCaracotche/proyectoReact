@@ -14,44 +14,31 @@ import Home from './components/Home/Home.jsx';
 function App() {
   const [carrito, setCarrito] = useState([]);
 
-  function agregarCarrito(producto, cantidad) {
+  function agregarCarrito(producto) {
 
-    if(producto) {
-        //si el carrito esta vacio agrego el producto directo
-        if(carrito.length === 0) {
-            setCarrito(carrito.push({producto: producto, cantidad: cantidad}))
-            console.log("agrego el producto:" +JSON.stringify(producto))
-            console.log("al carrito" +JSON.stringify(carrito))
-        }
-        else {  //si el carrito tiene algo compruebo que exista el producto
+            //verifico si existe
+            const productoExiste = carrito.find(prod => prod.id === producto.id)
 
-            //
-            //
-            //ACA YA ME CONVIERTE EL CARRITO EN UN ENTERO
-            //ME DEVUELVE 1 EN VEZ DE DEVOLVERME EL CARRITO
-            console.log("carrito del else " +carrito)
-            //
-            //
-
-            const productoExiste = carrito.find(item => item.producto.id === producto.id)
             //si el producto existe sumo la cantidad
             if(productoExiste) {
-              const carritoActualizado = carrito.map(item => {
-                if(item.producto.id === producto.id) {
-                  //const actualizarCantidad = item.cantidad + cantidad;
-                  const nuevoProd = {producto: item.producto, cantidad: item.cantidad + cantidad}
+              const carritoActualizado = carrito.map(prod => {
+                if(prod.id === producto.id) {
+                  const cantidadAct = prod.cantidad + producto.cantidad;
+                  const nuevoProd = {...prod, cantidad: cantidadAct}
                   return nuevoProd
                 }
-                return item
+                return prod
               })
               setCarrito(carritoActualizado)
             }
             else {
-                //lo agrego porque no esta
-                setCarrito(carrito.push({producto: producto, cantidad: cantidad}))
+                //si no existe, lo agrego
+                setCarrito([...carrito, producto])
             }
-        }    
-      }
+
+          setCarrito([...carrito, producto])
+          //si el producto ya se encuentra en el carrito, incremento la cantidad       
+           
   }
 
 
@@ -62,7 +49,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/productos" element={<ProductsList />} />
-                <Route path="/detalleProducto/:id" element={<DetailProduct carrito={carrito} agregarCarrito={agregarCarrito} />} />
+                <Route path="/detalleProducto/:id" element={<DetailProduct agregarCarrito={agregarCarrito} />} />
                 <Route path="/nosotros" element={<Nosotros/>} />
                 <Route path="/contacto" element={<Contact/>} />
                 <Route path="/carrito" element={<Cart carrito={carrito} />} />

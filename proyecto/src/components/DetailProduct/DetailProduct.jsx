@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 
 function DetailProduct( {agregarCarrito} ) {
     const { id } = useParams();
-    const [contador, setContador] = useState(1);
     const [producto, setProducto] = useState(null);
     const [error, setError] = useState(null);
+    const [contador, setContador] = useState(1);
 
      useEffect(() => {
         fetch("https://68100d8c27f2fdac24101f03.mockapi.io/productos/"+id)
@@ -16,7 +16,7 @@ function DetailProduct( {agregarCarrito} ) {
     },[id])
 
     function modificarCarrito() {
-        agregarCarrito(producto, contador)
+        agregarCarrito(producto)
     }
 
     function restarContador() {
@@ -37,11 +37,13 @@ function DetailProduct( {agregarCarrito} ) {
                     <img src={producto.imagen} className="card-img" />
                     <p className="price">$ {producto.price}</p>
                     <p className="description">{producto.description}</p>
+                    <p>{producto.id}</p>
                     <div className='counter'>
                         <button onClick={restarContador}>-</button>
                         <span>{contador}</span>
                         <button onClick={sumarContador}>+</button>
                     </div>
+                    total: {producto.price * contador}
                     <button className='button' onClick={modificarCarrito}>Agregar al Carrito</button>
                 </div>)}
         </div>

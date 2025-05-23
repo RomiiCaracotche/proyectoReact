@@ -8,6 +8,7 @@ function Product( {producto} ){
         <div className="card">
             <h2 className="title">{producto.name}</h2>
             <img src={producto.imagen} className="card-img" />
+            <p>id: {producto.id} </p>
             <p className="price">$ {producto.price}</p>
             <Link to={"/detalleProducto/"+producto.id} className="button">Ver Producto</Link>
         </div>
