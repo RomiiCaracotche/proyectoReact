@@ -1,22 +1,27 @@
-import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import "./ItemCart.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-function ItemCart( {producto} ) {
+function ItemCart( {producto, borrarCarrito} ) {
 
     function eliminarProducto() {
-
+        borrarCarrito(producto.id)
     }
 
     return (
-        
-        <div className='container-cart'>
-                <div className="cart">
-                    <h2 className="title">{producto.name}</h2>
-                    <img src={producto.imagen} className="card-img" />
+        <div className="item-cart">
+            <div>
+                <img src={producto.imagen} className="item-img" />
+            </div>
+            <div className="container-title">
+                <h2 className="title">{producto.name}</h2>
+                <div className="container-cantidad">
                     <p className="price">$ {producto.price}</p>
-                    <span>Totalll: {producto.cantidad ? producto.price * producto.cantidad : producto.price}</span>
-                    <button className='button' onClick={eliminarProducto}>Eliminar Producto</button>
+                    <span>Cantidad: {producto.cantidad}</span>
+                    <span>Total: {producto.cantidad ? producto.price * producto.cantidad : producto.price}</span>
+                    <button className='button' onClick={eliminarProducto}><FontAwesomeIcon icon={faTrash} size="lg" style={{color: "#fff"}} /></button>
                 </div>
+            </div>  
         </div>
     );
 }

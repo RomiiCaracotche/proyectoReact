@@ -1,4 +1,4 @@
-.contacto {
+.admin {
     background-color: rgb(181, 181, 184);
     width: 400px;
     height: 200px;
@@ -11,7 +11,7 @@
     font-weight: bolder;
 }
 
-.container-contacto {
+.container-admin {
     display: flex;
     justify-content: center;
     height: calc(100vh - 50px);

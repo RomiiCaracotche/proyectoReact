@@ -1,8 +1,9 @@
 import React from 'react';  
+import "./Home.css";
 
 function Header() {  
     return (  
-        <header style={{ backgroundColor: "#4CAF50", padding: "10px", textAlign: "center", color: "white" }}>  
+        <header className='header'>  
             <h1>Bienvenidos a mi App React</h1>  
         </header>  
     );  

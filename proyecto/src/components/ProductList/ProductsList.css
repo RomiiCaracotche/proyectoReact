@@ -8,6 +8,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content:space-around;
     max-height: 100%;
     background-color: #c6c4c4;
     box-sizing: border-box;

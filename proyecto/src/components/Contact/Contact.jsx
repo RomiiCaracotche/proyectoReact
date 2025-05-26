@@ -1,6 +1,12 @@
+import "./Contact.css";
+
 function Contact() {
     return (
-        <p>contacto</p>
+        <div className="container-contacto">
+            <div className="contacto">
+                <p>contacto</p>
+            </div>
+        </div>
     );
 }
 

@@ -1,6 +1,12 @@
+import "./Nosotros.css";
+
 function Nosotros() {
     return (
-        <p>Nosotros</p>
+        <div className="container-nosotros">
+            <div className="nosotros">
+                <p>Nosotros</p>
+            </div>
+        </div>
     );
 }
 

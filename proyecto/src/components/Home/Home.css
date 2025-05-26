@@ -1,0 +1,9 @@
+
+.header {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: calc(100vh - 50px);
+   color: rgb(124, 185, 191);
+   font-weight: bolder;
+}

@@ -1,17 +1,18 @@
 import React from 'react';  
 import {Link} from 'react-router-dom';
+import "./Nav.css";
 
 function Nav() {  
     return (  
-        <nav style={{ backgroundColor: "#333", color: "white", padding: "10px" }}>  
-            <ul style={{ listStyle: "none", display: "flex", justifyContent: "space-around", margin: 0 }}>  
-                <li><Link to="/" style={{ color: "white", textDecoration: "none" }}>Inicio</Link></li>
-                <li><Link to="/productos" style={{ color: "white", textDecoration: "none" }}>Productos</Link></li>  
-                <li><Link to="/nosotros" style={{ color: "white", textDecoration: "none" }}>Nosotros</Link></li>  
-                <li><Link to="/contacto" style={{ color: "white", textDecoration: "none" }}>Contacto</Link></li> 
-                <li><Link to="/carrito" style={{ color: "white", textDecoration: "none" }}>Carrito</Link></li>   
-                <li><Link to="#" style={{ color: "white", textDecoration: "none" }}>Admin</Link></li>  
-                <li><Link to="#" style={{ color: "white", textDecoration: "none" }}>Login</Link></li>  
+        <nav>  
+            <ul>  
+                <li><Link to="/" className='item'>Inicio</Link></li>
+                <li><Link to="/productos" className='item'>Productos</Link></li>  
+                <li><Link to="/nosotros" className='item'>Nosotros</Link></li>  
+                <li><Link to="/contacto" className='item'>Contacto</Link></li> 
+                <li><Link to="/carrito" className='item'>Carrito</Link></li>   
+                <li><Link to="/admin" className='item'>Admin</Link></li>  
+                <li><Link to="/login" className='item'>Login</Link></li>  
             </ul>  
         </nav>  
     );  

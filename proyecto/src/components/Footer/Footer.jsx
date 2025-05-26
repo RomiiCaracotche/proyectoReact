@@ -4,7 +4,7 @@ import "./Footer.css";
 function Footer() {  
     return (  
         <footer className="footer" >  
-            <p>&copy; 2024 - Mi Aplicación React</p>  
+            <p>&copy; 2025 - Mi Aplicación React - Romina Caracotche</p>  
         </footer>  
     );  
 }  

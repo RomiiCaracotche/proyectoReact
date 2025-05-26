@@ -1,0 +1,18 @@
+.nosotros {
+    background-color: rgb(181, 181, 184);
+    width: 400px;
+    height: 200px;
+    margin: auto;
+    border-radius: 1rem;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.container-nosotros {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 50px);
+}
