@@ -1,18 +1,23 @@
-import "../Product/Product.css";
+/* import "../Product/Product.css"; */
 import {Link} from 'react-router-dom';
 import "../DetailProduct/DetailProduct.jsx";
+import Button from "react-bootstrap/Button";
+import {Card} from "react-bootstrap";
 
-function Product( {producto} ){
-    
-    return (
-        <div className="card">
-            <h2 className="title">{producto.name}</h2>
-            <img src={producto.imagen} className="card-img" />
-            <p>id: {producto.id} </p>
-            <p className="price">$ {producto.price}</p>
-            <Link to={"/detalleProducto/"+producto.id} className="button">Ver Producto</Link>
-        </div>
-    );
+function Product( {producto} ) {
+
+        return (
+
+            <Card style={{ width:'18rem' }}>
+                <Card.Img variant="top" src={producto.imagen} style={{ height:'200px', objectFit:'cover' }}/>
+                <Card.Body className='d-flex flex-column align-items-center'>
+                    <Card.Title>{producto.name}</Card.Title>
+                    <Button variant="primary"><Link to={"/detalleProducto/"+producto.id} className='text-light text-decoration-none'>Ver Detalle</Link></Button>
+                </Card.Body>
+            </Card>
+  );
+
+
 }
 
 export default Product;

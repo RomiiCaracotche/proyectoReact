@@ -1,13 +1,17 @@
-import "./Cart.css";
+/* import "./Cart.css"; */
 import ItemCart from '../ItemCart/ItemCart.jsx';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Navigate } from "react-router-dom";
+import {CartContext} from "./../../contexts/CartContext.jsx";
+import { useAuthContext } from "./../../contexts/AuthContext.jsx";
 
-function Cart( {carrito, borrarCarrito, userLogueado, adminLogueado} ){
+function Cart(){
 
+    const {carrito, borrarCarrito} = useContext(CartContext);
+    const {user} = useAuthContext();
     const total =  (carrito.reduce((total, producto) => total + producto.price * (producto.cantidad ? producto.cantidad : 1), 0)).toFixed(2) 
 
-    if(!userLogueado && !adminLogueado) {
+    if(!user) {
         return <Navigate to="/login" replace />
     }
 

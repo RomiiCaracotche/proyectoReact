@@ -1,10 +1,19 @@
 import React from 'react';  
 import "./Home.css";
+import { useAuthContext } from './../../contexts/AuthContext.jsx';
 
 function Header() {  
+    const {user, admin} = useAuthContext();
+
     return (  
         <header className='header'>  
-            <h1>Bienvenidos a mi App React</h1>  
+            {
+                !user && !admin ?
+                    <h2> Inicia sesion </h2> 
+                : (
+                    !admin ? <h2>Bienvenido usuario {user} !!!</h2> : <h2> Bienvenido admin !!!</h2> 
+                )
+            }
         </header>  
     );  
 } 
