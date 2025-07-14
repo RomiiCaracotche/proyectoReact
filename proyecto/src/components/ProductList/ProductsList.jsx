@@ -39,7 +39,7 @@ function ProductsList() {
     else {
         return (
 
-            <Container fluid className="h-100 d-flex flex-column justify-content-between align-items-center p-4">
+            <Container fluid className="d-flex flex-column justify-content-between align-items-center p-4">
 
                 <Row className="w-100 d-flex justify-content-center">
                     <Col xs={12} sm={10} lg={6} xl={4}>

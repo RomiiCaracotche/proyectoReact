@@ -11,6 +11,7 @@ const element = document.getElementById('root');
 element.style.height="100vh";
 element.style.display="flex";
 element.style.flexDirection="column";
+
 createRoot(document.getElementById('root')).render( 
  
   <StrictMode>
