@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useAuthContext } from '../../contexts/AuthContext';
 import { Navigate } from 'react-router-dom';
 import { useProductsContext } from '../../contexts/ProductsContext';
@@ -54,12 +54,12 @@ function FormProduct() {
     };
 
     if (!admin) {
-        console.log("admin" +admin)
-        return <Navigate to="/denied" replace /> 
+        return <Navigate to="/login" replace /> 
     } 
     else {
         return ( 
-            <div className='h-75 d-flex flex-column justify-content-center align-items-center'>
+            
+            <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
                 <Container className='w-50 d-flex flex-column justify-content-center align-items-center mt-5 p-4 rounded border border-secondary' style={{}}>
 
                     <Form onSubmit={handleSubmit} className='w-100 d-flex flex-column justify-content-center align-items-center'>
@@ -90,30 +90,8 @@ function FormProduct() {
 
                 </Container>
             </div>
-
-          /*   <form onSubmit={handleSubmit}>
-                <h2>Agregar Producto</h2>
-                <div>
-                    <label>Nombre:</label>
-                    <input type="text" name="name" value={producto.name} onChange={handleChange} required/>
-                </div>
-                <div>
-                    <label>URL de la Imagen:</label>
-                    <input type="text" name="imagen" value={producto.imagen} onChange={handleChange} required/>
-                </div>
-                <div>
-                    <label>Precio:</label>
-                    <input type="number" name="price" value={producto.price} onChange={handleChange} required min="0"/>
-                </div>
-                <div>
-                    <label>Descripción:</label>
-                    <textarea name="description" value={producto.description} onChange={handleChange} required />
-                </div>
-                <button type="submit">Agregar Producto</button>
-            </form> */
         );
     }
-
 }
 
 export default FormProduct;

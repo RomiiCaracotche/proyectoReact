@@ -4,7 +4,7 @@ function Nosotros() {
     return (
         <div className="container-nosotros">
             <div className="nosotros">
-                <p>Nosotros</p>
+                <h4>Nosotros</h4>
             </div>
         </div>
     );

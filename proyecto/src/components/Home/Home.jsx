@@ -1,4 +1,4 @@
-import React from 'react';  
+
 import "./Home.css";
 import { useAuthContext } from './../../contexts/AuthContext.jsx';
 
@@ -8,11 +8,13 @@ function Header() {
     return (  
         <header className='header'>  
             {
-                !user && !admin ?
-                    <h2> Inicia sesion </h2> 
-                : (
-                    !admin ? <h2>Bienvenido usuario {user} !!!</h2> : <h2> Bienvenido admin !!!</h2> 
-                )
+                (!user && !admin) ?
+                    <h2> Inicia sesión para comprar</h2> 
+                : 
+                    (!admin) ? 
+                        <h2>Bienvenido usuario {user} !!!</h2> 
+                    : 
+                    <h2> Bienvenido admin !!!</h2>  
             }
         </header>  
     );  

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Product from "../Product/Product";
 /* import "./productsList.css"; */
 import { useProductsContext } from "./../../contexts/ProductsContext.jsx";
-import { useAuthContext } from "../../contexts/AuthContext.jsx";
-import { Container, Row, Col, Card, InputGroup, Form } from 'react-bootstrap';
+import { Container, Row, Col, InputGroup, Form } from 'react-bootstrap';
 import { FaSearch } from "react-icons/fa";
 
 function ProductsList() {
@@ -18,7 +17,6 @@ function ProductsList() {
     const indiceUltimoProducto = paginaActual * productosPorPagina;
     const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
     const productosActuales = productos.slice(indicePrimerProducto, indiceUltimoProducto);
-
 
     useEffect(() => {
         obtenerProductos()
@@ -41,32 +39,34 @@ function ProductsList() {
     else {
         return (
 
-            <div className="d-flex flex-column justify-content-between align-items-center p-4 w-100" >
+            <Container fluid className="d-flex flex-column justify-content-between align-items-center p-4">
 
-                <InputGroup className="w-25 mb-4" style={{  }}>
-                    <Form.Control
-                        type="text"
-                        placeholder="Buscar producto..."
-                        value={busqueda}
-                        onChange={(e) => setBusqueda(e.target.value)}
-                        aria-label="Ingrese el producto que desea buscar aqui" 
-                    />
-                    <InputGroup.Text id="basic-addon1"><FaSearch/></InputGroup.Text>
-                </InputGroup>
+                <Row className="w-100 d-flex justify-content-center">
+                    <Col xs={12} sm={10} lg={6} xl={4}>
+                    <InputGroup className="mb-4">
+                        <Form.Control
+                            type="text"
+                            placeholder="Buscar producto..."
+                            value={busqueda}
+                            onChange={(e) => setBusqueda(e.target.value)}
+                            aria-label="Ingrese el producto que desea buscar aqui" 
+                        />
+                        <InputGroup.Text id="basic-addon1"><FaSearch/></InputGroup.Text>
+                    </InputGroup>
+                    </Col>
+                </Row>
 
-                <Container fluid>
-                    <Row xs={1} sm={2} lg={4} xl={5} className="g-4 d-flex flex-wrap">
+                <Row className="w-100 d-flex justify-content-center g-4">
                         {(productosActuales.length > 0) ?
                             productosActuales.map(producto =>
-                                <Col>
+                                <Col xs={12} sm={10} lg={6} xl={3}>
                                     <Product producto={producto} />
                                 </Col>
                             )
                             :
                             <></>
                         }
-                    </Row>
-                </Container>
+                </Row>
 
                 <div className="my-4">
                     {Array.from({ length: totalPaginas }, (_, index) => (
@@ -80,11 +80,9 @@ function ProductsList() {
                     ))}
                 </div>
 
-            </div> 
-        )
-           
+            </Container> 
+        )    
     }
-
 }
 
 export default ProductsList;

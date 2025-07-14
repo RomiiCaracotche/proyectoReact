@@ -1,6 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useState, useContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductsList from './components/ProductList/ProductsList.jsx';
 import DetailProduct from './components/DetailProduct/DetailProduct.jsx';
 import Nosotros from './components/Nosotros/Nosotros.jsx';
@@ -9,8 +8,7 @@ import Cart from './components/Cart/Cart.jsx';
 import Navv from './components/Navv/Navv.jsx';
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
-import Denied from './components/Denied/Denied.jsx';
-import Admin from './components/Admin/Admin.jsx';
+import Footer from './components/Footer/Footer.jsx';
 import FormProduct from './components/FormProduct/FormProduct.jsx';
 import FormEdit from './components/FormEdit/FormEdit.jsx';
 import { useAuthContext } from "./contexts/AuthContext";
@@ -34,11 +32,10 @@ function App() {
             <Route path="/contacto" element={<Contact/>} />
             <Route path="/carrito" element={<Cart/>} />
             <Route path="/login" element={<Login/>} />
-            <Route path="/denied" element={<Denied/>} />
-            <Route path='/admin' element={<Admin/>} />
             <Route path='/admin/agregarProducto' element={<FormProduct />} />
             <Route path='/admin/editarProducto/:id' element={<FormEdit />} />
         </Routes>
+        <Footer/>
     </Router>
   )
 }

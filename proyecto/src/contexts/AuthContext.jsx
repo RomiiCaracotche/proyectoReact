@@ -8,21 +8,20 @@ export function AuthProvider({ children }) {
     const [admin, setAdmin] = useState(false);
 
     const login = (username) => {
-        // Simulando la creación de un token (en una app real, esto sería generado por un servidor)
         const token = `fake-token-${username}`;
         if(username == 'admin@gmail.com') {
             setAdmin(true);
         }
         localStorage.setItem('authToken', token);
         setUser(username);
-        
+        window.location.replace("/")
     }
 
     const logout = () => {
         localStorage.removeItem('authToken');
         setUser(null);
         setAdmin(false)
-         window.location.replace("/")
+        window.location.replace("/")
     }
 
     function validarLogin() {

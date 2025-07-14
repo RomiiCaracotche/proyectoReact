@@ -1,6 +1,7 @@
 /* import "./ItemCart.css"; */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import {Card,ListGroup,Button} from "react-bootstrap";
 
 function ItemCart( {producto, borrarCarrito} ) {
 
@@ -9,20 +10,22 @@ function ItemCart( {producto, borrarCarrito} ) {
     }
 
     return (
-        <div className="item-cart">
-            <div>
-                <img src={producto.imagen} className="item-img" />
-            </div>
-            <div className="container-title">
-                <h2 className="title">{producto.name}</h2>
-                <div className="container-cantidad">
-                    <p className="price">$ {producto.price}</p>
-                    <span>Cantidad: {producto.cantidad}</span>
-                    <span>Total: {producto.cantidad ? producto.price * producto.cantidad : producto.price}</span>
-                    <button className='button' onClick={eliminarProducto}><FontAwesomeIcon icon={faTrash} size="lg" style={{color: "#fff"}} /></button>
-                </div>
-            </div>  
-        </div>
+
+        {/* <Card className='d-flex flex-row'>
+            <Card.Img variant="top" style={{ width:'150px', height:'150px', objectFit:'cover' }} src={producto.imagen} />
+            <Card.Body>
+                <Card.Title>{producto.name}</Card.Title>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+                <ListGroup.Item>Total: {producto.cantidad ? producto.price * producto.cantidad : producto.price}</ListGroup.Item>
+                <ListGroup.Item>Precio: {producto.price}</ListGroup.Item>
+                <ListGroup.Item>Cantidad: {producto.cantidad}</ListGroup.Item>
+            </ListGroup>
+            <Card.Body>
+                <Button onClick={eliminarProducto}><FontAwesomeIcon icon={faTrash} size="lg" style={{color: "#fff"}} /></Button>
+            </Card.Body>
+        </Card> */}
+
     );
 }
 

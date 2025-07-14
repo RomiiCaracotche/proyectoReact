@@ -4,7 +4,7 @@ import { Form, Button, Container } from "react-bootstrap";
 function Contact() {
     return (
        
-        <div className='h-75 d-flex flex-column justify-content-center align-items-center'>
+        <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
                 <Container className='w-50 d-flex flex-column justify-content-center align-items-center mt-5 p-4 rounded border border-secondary' style={{}}>
 
                     <Form className='w-100 d-flex flex-column justify-content-center align-items-center'>
