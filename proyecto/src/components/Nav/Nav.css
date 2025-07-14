@@ -31,3 +31,10 @@ nav ul {
     background-color: rgb(151, 156, 157);
 }
 
+.option-nav{
+    background-color:#ccced0;  
+}
+
+.option-nav:hover {
+    background-color: #e1e6ec;  
+}

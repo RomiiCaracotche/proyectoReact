@@ -39,7 +39,7 @@ function Cart(){
                 <tbody className='fw-bold text-center align-middle'>
                         {carrito.length > 0 ? 
                             carrito.map(producto => 
-                                <tr>
+                                <tr style={{height:'150px'}}>
                                     <td><img src={producto.imagen} style={{width:'150px', height:'150px', objectFit:'cover'}}/></td>
                                     <td>{producto.name}</td>
                                     <td>{producto.cantidad}</td>
@@ -54,7 +54,7 @@ function Cart(){
                             </tr>
                         }
                         <tr>
-                            <td colSpan={6} className='border border-black'>{total > 0 ? <p className="fs-5 fw-bold text-end m-0 p-1">Total: <span className="fs-4 mx-2 fw-bold">${total}</span></p> : <></>}</td>
+                            <td colSpan={6} className='border border-black position-relative'>{total > 0 ? <p className="fs-5 fw-bold m-0 p-1 position-absolute bottom-0 end-0">Total: <span className="fs-4 mx-2 fw-bold">${total}</span></p> : <></>}</td>
                         </tr>
                 </tbody>
             </Table>

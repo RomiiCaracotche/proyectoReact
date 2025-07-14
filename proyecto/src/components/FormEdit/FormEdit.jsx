@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useProductsContext } from "../../contexts/ProductsContext";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from "../../contexts/AuthContext";
 import { Form, Button, Container } from "react-bootstrap";
 
@@ -8,7 +8,9 @@ function FormEdit() {
   const {obtenerProducto, encontrado, editarProducto} = useProductsContext();
   const [producto, setProducto] = useState(encontrado);
   const {id} = useParams();
-  const {admin} = useAuthContext();
+  const {admin, user} = useAuthContext();
+  const [mensaje, setMensaje] = useState(false);
+  const navegar = useNavigate();
 
   useEffect(() => {
     obtenerProducto(id)
@@ -23,31 +25,31 @@ function FormEdit() {
             })
   }, [id]);
 
-  if(!admin) {
-    return(
-      <Navigate to="/login" replace />
-    )
-  }
-
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value)
     setProducto({ ...producto, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validForm = validarFormulario();
+
     if (validForm) {
         editarProducto(producto)
           .then((prod) => {
-              alert('Producto actualizado correctamente.');
+                setMensaje(true);
+                const timer = setTimeout(() => {
+                    setMensaje(false);
+                    navegar("/productos");
+                }, 2000);
           })
         .catch((error) => {
-              alert('Hubo un problema al actualizar el producto.' +error.message);
+              console.log('Hubo un problema al actualizar el producto.' +error.message);
         })
     }
     else {
-            alert('Error al cargar el producto: '+ validForm);
+            console.log('Error al cargar el producto: '+ validForm);
         }
   };
 
@@ -67,42 +69,61 @@ function FormEdit() {
         else {
             return true
         }
-    };
+};
 
-  return (
+    if(user) {
+        return <Navigate to="/denied" replace />
+    } 
+    else {
+        if(!admin) {
+            return <Navigate to="/login" replace /> 
+        }
+        else {
 
-        <div className='h-100 d-flex flex-column justify-content-center align-items-center'>
-                <Container className='w-50 d-flex flex-column justify-content-center align-items-center mt-5 p-4 rounded border border-secondary' style={{}}>
+             return (
 
-                    <Form onSubmit={handleSubmit} className='w-100 d-flex flex-column justify-content-center align-items-center'>
-                        <Form.Label className='fw-bold fs-4 text-decoration-underline'>Modificar Producto</Form.Label>         
-                        
-                        <Form.Group className="mb-3 w-100 fw-bold">
-                            <Form.Label htmlFor="nombre">Nombre:</Form.Label>
-                            <Form.Control id="nombre" placeholder="Nombre del producto" type="text" name="name" value={producto.name || ''} onChange={handleChange} required />
-                        </Form.Group>
+                <div className='w-100 h-100 d-flex flex-column justify-content-center align-items-center'>
+                        <Container className='w-50 d-flex flex-column justify-content-center align-items-center mt-5 p-4 rounded border border-secondary' style={{}}>
 
-                        <Form.Group className="mb-3 w-100 fw-bold">
-                            <Form.Label htmlFor="imagen">URL de la Imagen:</Form.Label>
-                            <Form.Control id="imagen" placeholder="Imagen del producto" type="text" name="imagen" value={producto.imagen} onChange={handleChange} required />
-                        </Form.Group>
+                            <Form onSubmit={handleSubmit} className='w-100 d-flex flex-column justify-content-center align-items-center'>
+                                <Form.Label className='fw-bold fs-4 text-decoration-underline'>Modificar Producto</Form.Label>         
+                                
+                                <Form.Group className="mb-3 w-100 fw-bold">
+                                    <Form.Label htmlFor="nombre">Nombre:</Form.Label>
+                                    <Form.Control id="nombre" type="text" name="name" value={producto.name || ''} onChange={handleChange} required />
+                                </Form.Group>
 
-                        <Form.Group className="mb-3 w-100 fw-bold">
-                            <Form.Label htmlFor="precio">Precio:</Form.Label>
-                            <Form.Control id="precio" placeholder="Precio del producto" type="number" name="price" value={producto.price || ''} onChange={handleChange} required min="0" />
-                        </Form.Group>
+                                <Form.Group className="mb-3 w-100 fw-bold">
+                                    <Form.Label htmlFor="imagen">URL de la Imagen:</Form.Label>
+                                    <Form.Control id="imagen" type="text" name="imagen" value={producto.imagen} onChange={handleChange} required />
+                                </Form.Group>
 
-                        <Form.Group className="mb-3 w-100 fw-bold" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Descripción:</Form.Label>
-                            <Form.Control as="textarea" placeholder="Ingrese la descripcion del producto aqui..." rows={3} value={producto.description || ''} onChange={handleChange} required />
-                        </Form.Group>
+                                <Form.Group className="mb-3 w-100 fw-bold">
+                                    <Form.Label htmlFor="precio">Precio:</Form.Label>
+                                    <Form.Control id="precio" type="number" name="price" value={producto.price || ''} onChange={handleChange} required min="0" />
+                                </Form.Group>
 
-                        <Button variant="warning" type="submit" className='w-100 mt-3 fw-bold border border-black'>Actualizar</Button>
-                    </Form>
+                                <Form.Group className="mb-3 w-100 fw-bold" controlId="exampleForm.ControlTextarea1">
+                                    <Form.Label>Descripción:</Form.Label>
+                                    <Form.Control as="textarea" rows={3} name="description" value={producto.description || ''} onChange={handleChange} required />
+                                </Form.Group>
 
-                </Container>
-            </div>
-  );
+                                <Button variant="warning" type="submit" className='w-100 mt-3 fw-bold border border-black'>Actualizar</Button>
+                            </Form>
+
+                        </Container>
+
+                         { mensaje ? 
+                            <div className="alert alert-success mt-3 w-50" role="alert">
+                                El producto se edito correctamente!!!
+                            </div> 
+                            : 
+                            <></> 
+                        }
+                </div>
+            );
+        }
+    }
 }
 
 export default FormEdit;
